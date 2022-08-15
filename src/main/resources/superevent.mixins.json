@@ -4,7 +4,8 @@
   "package": "dev.dubhe.superevent.mixin",
   "mixins": [
     "event.PlayerListMixin",
-    "event.ServerGamePacketListenerImplMixin"
+    "event.ServerGamePacketListenerImplMixin",
+    "event.ServerPlayerMixin"
   ],
   "client": [],
   "injectors": {

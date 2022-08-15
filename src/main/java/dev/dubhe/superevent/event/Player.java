@@ -2,6 +2,7 @@ package dev.dubhe.superevent.event;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 
@@ -44,12 +45,26 @@ public class Player {
         /**
          * 玩家准备躺到床上时触发此事件。
          */
-//TODO        public static final Event<> PLAYER_BED_ENTER_EVENT = EventFactory.createArrayBacked();
+        public static final Event<ServerPlayerAndBlockPosInterface> PLAYER_BED_ENTER_EVENT = EventFactory.createArrayBacked(
+                ServerPlayerAndBlockPosInterface.class,
+                callbacks -> ((player, pos) -> {
+                    for (ServerPlayerAndBlockPosInterface callback : callbacks) {
+                        callback.inter(player, pos);
+                    }
+                })
+        );
 
         /**
          * 玩家离开床时触发此事件。
          */
-//TODO        public static final Event<> PLAYER_BED_LEAVE_EVENT = EventFactory.createArrayBacked();
+        public static final Event<ServerPlayerAndBlockPosInterface> PLAYER_BED_LEAVE_EVENT= EventFactory.createArrayBacked(
+                ServerPlayerAndBlockPosInterface.class,
+                callbacks -> ((player, pos) -> {
+                    for (ServerPlayerAndBlockPosInterface callback : callbacks) {
+                        callback.inter(player, pos);
+                    }
+                })
+        );
 
         /**
          * 玩家用完一只桶后触发此事件。
@@ -315,5 +330,11 @@ public class Player {
     public interface ServerPlayerAndMessageInterface {
 
         void inter(ServerPlayer player, Component message);
+    }
+
+    @FunctionalInterface
+    public interface ServerPlayerAndBlockPosInterface {
+
+        void inter(ServerPlayer player, BlockPos pos);
     }
 }

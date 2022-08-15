@@ -23,7 +23,7 @@ public class ServerGamePacketListenerImplMixin {
 
     @ModifyArg(method = "onDisconnect", index = 0, at = @At(value = "INVOKE", target = "Lnet/minecraft/server/players/PlayerList;broadcastMessage(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/ChatType;Ljava/util/UUID;)V"))
     private Component exit(Component component){
-        // 玩家退出事件
+        // 玩家离开服务器事件。
         PlayerEvent.PLAYER_QUIT_EVENT.invoker().inter(player, component);
         return component;
     }
@@ -34,7 +34,7 @@ public class ServerGamePacketListenerImplMixin {
         Function<ServerPlayer, Component> function = args.get(1);
         ChatType chatType = args.get(2);
         UUID uUID = args.get(3);
-        // 玩家聊天事件
+        // 当玩家聊天时触发这个事件。
         PlayerEvent.PLAYER_CHAT_EVENT.invoker().inter(player, component);
         args.set(0, component);
         args.set(1, function);
