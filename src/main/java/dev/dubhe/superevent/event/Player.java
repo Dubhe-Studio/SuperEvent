@@ -12,12 +12,14 @@ public class Player {
         /**
          * 当玩家聊天时触发这个事件。
          */
-//TODO        public static final Event<> PLAYER_CHAT_EVENT = EventFactory.createArrayBacked();
-
-        /**
-         * 存储尝试登录的玩家的详细信息，玩家尝试登录服务器的事件。
-         */
-//TODO        public static final Event<> PLAYER_PRE_LOGIN_EVENT = EventFactory.createArrayBacked();
+        public static final Event<ServerPlayerAndMessageInterface> PLAYER_CHAT_EVENT = EventFactory.createArrayBacked(
+                ServerPlayerAndMessageInterface.class,
+                callbacks -> ((player, message) -> {
+                    for (ServerPlayerAndMessageInterface callback : callbacks) {
+                        callback.inter(player, message);
+                    }
+                })
+        );
 
         /**
          * 当玩家完成一个进度中所有的标准时触发此事件。
