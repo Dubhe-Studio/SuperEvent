@@ -3,7 +3,7 @@
   "id": "superevent",
   "version": "${version}",
   "name": "SuperEvent",
-  "description": "",
+  "description": "A fabric event system",
   "authors": [
     "DubheStudio"
   ],
@@ -11,10 +11,11 @@
     "sources": "https://github.com/Dubhe-Studio/SuperEvent",
     "issues": "https://github.com/Dubhe-Studio/SuperEvent/issues"
   },
-  "license": "",
+  "license": "MIT",
   "environment": "*",
   "entrypoints": {
     "main": [
+      "dev.dubhe.superevent.SuperEvent"
     ]
   },
   "mixins": [
@@ -23,9 +24,7 @@
   "accessWidener": "superevent.accesswidener",
   "depends": {
     "minecraft": ">=1.18.2",
-    "fabricloader": "*"
-  },
-  "suggests": {
-    "another-mod": "*"
+    "fabricloader": "*",
+    "fabric": "*"
   }
 }

@@ -1,8 +1,10 @@
 {
   "required": true,
-  "package": "",
   "compatibilityLevel": "JAVA_17",
+  "package": "dev.dubhe.superevent.mixin",
   "mixins": [
+    "event.PlayerListMixin",
+    "event.ServerGamePacketListenerImplMixin"
   ],
   "client": [],
   "injectors": {
