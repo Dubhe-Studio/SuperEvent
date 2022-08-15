@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "superevent",
+  "version": "${version}",
+  "name": "SuperEvent",
+  "description": "",
+  "authors": [
+    "DubheStudio"
+  ],
+  "contact": {
+    "sources": "https://github.com/Dubhe-Studio/SuperEvent",
+    "issues": "https://github.com/Dubhe-Studio/SuperEvent/issues"
+  },
+  "license": "",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+    ]
+  },
+  "mixins": [
+    "superevent.mixins.json"
+  ],
+  "accessWidener": "superevent.accesswidener",
+  "depends": {
+    "minecraft": ">=1.18.2",
+    "fabricloader": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
