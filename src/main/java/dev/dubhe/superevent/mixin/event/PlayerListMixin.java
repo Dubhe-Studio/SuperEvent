@@ -21,7 +21,7 @@ public class PlayerListMixin {
         this.serverPlayer = serverPlayer;
     }
 
-    @ModifyArg(method = "placeNewPlayer", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/players/PlayerList;broadcastMessage(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/ChatType;Ljava/util/UUID;)V"))
+    @ModifyArg(method = "placeNewPlayer", index = 0, at = @At(value = "INVOKE", target = "Lnet/minecraft/server/players/PlayerList;broadcastMessage(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/ChatType;Ljava/util/UUID;)V"))
     private Component join(Component component) {
         // 玩家加入事件
         PlayerEvent.PLAYER_JOIN_EVENT.invoker().inter(serverPlayer, component);
