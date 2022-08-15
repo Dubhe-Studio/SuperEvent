@@ -44,6 +44,10 @@ java {
     withSourcesJar()
 }
 
+javadoc {
+    options.encoding "UTF-8"
+}
+
 jar {
     from("LICENSE") {
         rename { "${it}_$archivesBaseName" }
