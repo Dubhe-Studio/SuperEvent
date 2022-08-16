@@ -8,6 +8,9 @@ import net.minecraft.server.level.ServerPlayer;
 
 public class Player {
 
+    /**
+     * 与玩家相关的事件。
+     */
     public static final class PlayerEvent {
 
         /**
@@ -314,11 +317,6 @@ public class Player {
          * 当一个实体被玩家解开拴绳时调用。
          */
 //TODO        public static final Event<> PLAYER_UNLEASH_ENTITY_EVENT = EventFactory.createArrayBacked();
-
-        /**
-         * 当玩家注销插件通道时触发事件。
-         */
-//TODO        public static final Event<> PLAYER_UNREGISTER_CHANNEL_EVENT = EventFactory.createArrayBacked();
 
         /**
          * 玩家移动速度变化事件。

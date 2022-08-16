@@ -5,7 +5,11 @@ import net.fabricmc.fabric.api.event.EventFactory;
 
 public class Block {
 
+    /**
+     * 与方块被改变或与世界进行交互等情况相关的事件。
+     */
     public static final class BlockEvent {
+
         /**
          * 当一个方块被玩家破坏的时候，调用本事件。
          */
@@ -45,11 +49,6 @@ public class Block {
          * 当一个方块被玩家破坏且掉落物品时触发本事件。
          */
 //TODO        public static final Event<> BLOCK_DROP_ITEM_EVENT = EventFactory.createArrayBacked();
-
-        /**
-         * 代表与方块相关的事件。
-         */
-//TODO        public static final Event<> BLOCK_EVENT = EventFactory.createArrayBacked();
 
         /**
          * 方块产生经验的时候(比如煤矿被被打破会掉落经验)时触发。
