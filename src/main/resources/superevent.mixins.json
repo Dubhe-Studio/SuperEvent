@@ -3,6 +3,7 @@
   "compatibilityLevel": "JAVA_17",
   "package": "dev.dubhe.superevent.mixin",
   "mixins": [
+    "event.BucketItemMixin",
     "event.PlayerListMixin",
     "event.ServerGamePacketListenerImplMixin",
     "event.ServerPlayerMixin"

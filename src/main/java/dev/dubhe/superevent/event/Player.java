@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
 
 public class Player {
 
@@ -16,11 +17,11 @@ public class Player {
         /**
          * 当玩家聊天时触发这个事件。
          */
-        public static final Event<ServerPlayerAndMessageInterface> PLAYER_CHAT_EVENT = EventFactory.createArrayBacked(
-                ServerPlayerAndMessageInterface.class,
-                callbacks -> ((player, message) -> {
-                    for (ServerPlayerAndMessageInterface callback : callbacks) {
-                        callback.inter(player, message);
+        public static final Event<ServerPlayerAndComponentInterface> PLAYER_CHAT_EVENT = EventFactory.createArrayBacked(
+                ServerPlayerAndComponentInterface.class,
+                callbacks -> ((player, component) -> {
+                    for (ServerPlayerAndComponentInterface callback : callbacks) {
+                        callback.inter(player, component);
                     }
                 })
         );
@@ -34,11 +35,6 @@ public class Player {
          * 玩家动作事件。
          */
 //TODO        public static final Event<> PLAYER_ANIMATION_EVENT = EventFactory.createArrayBacked();
-
-        /**
-         * 玩家动作的不同种类
-         */
-//TODO        public static final Event<> PLAYER_ANIMATIO_EVENT = EventFactory.createArrayBacked();
 
         /**
          * 当玩家与装甲架交互并且进行交换, 取回或放置物品时触发本事件。
@@ -60,7 +56,7 @@ public class Player {
         /**
          * 玩家离开床时触发此事件。
          */
-        public static final Event<ServerPlayerAndBlockPosInterface> PLAYER_BED_LEAVE_EVENT= EventFactory.createArrayBacked(
+        public static final Event<ServerPlayerAndBlockPosInterface> PLAYER_BED_LEAVE_EVENT = EventFactory.createArrayBacked(
                 ServerPlayerAndBlockPosInterface.class,
                 callbacks -> ((player, pos) -> {
                     for (ServerPlayerAndBlockPosInterface callback : callbacks) {
@@ -72,7 +68,14 @@ public class Player {
         /**
          * 玩家用完一只桶后触发此事件。
          */
-//TODO        public static final Event<> PLAYER_BUCKET_EMPTY_EVENT = EventFactory.createArrayBacked();
+        public static final Event<ServerPlayerAndBlockPosInterface> PLAYER_BUCKET_EMPTY_EVENT = EventFactory.createArrayBacked(
+                ServerPlayerAndBlockPosInterface.class,
+                callbacks -> ((player, pos) -> {
+                    for (ServerPlayerAndBlockPosInterface callback : callbacks) {
+                        callback.inter(player, pos);
+                    }
+                })
+        );
 
         /**
          * 当玩家用桶捕捉实体时会触发此事件。
@@ -82,7 +85,14 @@ public class Player {
         /**
          * 当玩家使用桶时触发本事件。
          */
-//TODO        public static final Event<> PLAYER_BUCKET_EVENT = EventFactory.createArrayBacked();
+        public static final Event<ServerPlayerAndInteractionHandInterface> PLAYER_BUCKET_EVENT = EventFactory.createArrayBacked(
+                ServerPlayerAndInteractionHandInterface.class,
+                callbacks -> ((player, hand) -> {
+                    for (ServerPlayerAndInteractionHandInterface callback : callbacks) {
+                        callback.inter(player, hand);
+                    }
+                })
+        );
 
         /**
          * 水桶装满水事件。
@@ -192,11 +202,11 @@ public class Player {
         /**
          * 玩家进入服务器事件。
          */
-        public static final Event<ServerPlayerAndMessageInterface> PLAYER_JOIN_EVENT = EventFactory.createArrayBacked(
-                ServerPlayerAndMessageInterface.class,
-                callbacks -> ((player, message) -> {
-                    for (ServerPlayerAndMessageInterface callback : callbacks) {
-                        callback.inter(player, message);
+        public static final Event<ServerPlayerAndComponentInterface> PLAYER_JOIN_EVENT = EventFactory.createArrayBacked(
+                ServerPlayerAndComponentInterface.class,
+                callbacks -> ((player, component) -> {
+                    for (ServerPlayerAndComponentInterface callback : callbacks) {
+                        callback.inter(player, component);
                     }
                 })
         );
@@ -209,7 +219,14 @@ public class Player {
         /**
          * 玩家等级改变事件。
          */
-//TODO        public static final Event<> PLAYER_LEVEL_CHANGE_EVENT = EventFactory.createArrayBacked();
+        public static final Event<ServerPlayerAndIntInterface> PLAYER_LEVEL_CHANGE_EVENT = EventFactory.createArrayBacked(
+                ServerPlayerAndIntInterface.class,
+                callbacks -> ((player, num) -> {
+                    for (ServerPlayerAndIntInterface callback : callbacks) {
+                        callback.inter(player, num);
+                    }
+                })
+        );
 
         /**
          * 当玩家改变他们的语言设置时触发本事件。
@@ -239,11 +256,11 @@ public class Player {
         /**
          * 玩家离开服务器事件。
          */
-        public static final Event<ServerPlayerAndMessageInterface> PLAYER_QUIT_EVENT = EventFactory.createArrayBacked(
-                ServerPlayerAndMessageInterface.class,
-                callbacks -> ((player, message) -> {
-                    for (ServerPlayerAndMessageInterface callback : callbacks) {
-                        callback.inter(player, message);
+        public static final Event<ServerPlayerAndComponentInterface> PLAYER_QUIT_EVENT = EventFactory.createArrayBacked(
+                ServerPlayerAndComponentInterface.class,
+                callbacks -> ((player, component) -> {
+                    for (ServerPlayerAndComponentInterface callback : callbacks) {
+                        callback.inter(player, component);
                     }
                 })
         );
@@ -325,14 +342,26 @@ public class Player {
     }
 
     @FunctionalInterface
-    public interface ServerPlayerAndMessageInterface {
+    public interface ServerPlayerAndComponentInterface {
 
-        void inter(ServerPlayer player, Component message);
+        void inter(ServerPlayer player, Component component);
     }
 
     @FunctionalInterface
     public interface ServerPlayerAndBlockPosInterface {
 
         void inter(ServerPlayer player, BlockPos pos);
+    }
+
+    @FunctionalInterface
+    public interface ServerPlayerAndIntInterface {
+
+        void inter(ServerPlayer player, int num);
+    }
+
+    @FunctionalInterface
+    public interface ServerPlayerAndInteractionHandInterface {
+
+        void inter(ServerPlayer player, InteractionHand hand);
     }
 }
