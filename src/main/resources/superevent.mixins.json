@@ -4,8 +4,10 @@
   "package": "dev.dubhe.superevent.mixin",
   "mixins": [
     "event.BucketItemMixin",
+    "event.LightningRodBlockMixin",
     "event.PlayerListMixin",
     "event.ServerGamePacketListenerImplMixin",
+    "event.ServerLevelMixin",
     "event.ServerPlayerMixin"
   ],
   "client": [],
