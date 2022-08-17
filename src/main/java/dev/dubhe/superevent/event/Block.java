@@ -2,6 +2,9 @@ package dev.dubhe.superevent.event;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 
 public class Block {
 
@@ -13,7 +16,14 @@ public class Block {
         /**
          * 当一个方块被玩家破坏的时候，调用本事件。
          */
-//TODO        public static final Event<> BLOCK_BREAK_EVENT = EventFactory.createArrayBacked();
+        public static final Event<BlockPosAndLevelAndPlayer> BLOCK_BREAK_EVENT = EventFactory.createArrayBacked(
+            BlockPosAndLevelAndPlayer.class,
+            callbacks -> ((blockPos, level, player) -> {
+                for (BlockPosAndLevelAndPlayer callback : callbacks) {
+                    callback.inter(blockPos, level, player);
+                }
+            })
+        );
 
         /**
          * 当一个方块被火烧掉的时候触发此事件。
@@ -179,5 +189,10 @@ public class Block {
          * 当海绵吸水时触发本事件。
          */
 //TODO        public static final Event<> SPONGE_ABSORB_EVENT = EventFactory.createArrayBacked();
+    }
+
+    @FunctionalInterface
+    public interface BlockPosAndLevelAndPlayer {
+        void inter(BlockPos blockPos, Level level, Player player);
     }
 }

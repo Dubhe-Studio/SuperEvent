@@ -10,7 +10,9 @@
     "event.ServerLevelMixin",
     "event.ServerPlayerMixin"
   ],
-  "client": [],
+  "client": [
+    "player.MultiPlayerGameModeMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }
