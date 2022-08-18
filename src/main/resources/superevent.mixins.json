@@ -12,6 +12,8 @@
     "event.LightningRodBlockMixin",
     "event.PaintingMixin",
     "event.PlayerListMixin",
+    "event.RaidMixin",
+    "event.RaidsMixin",
     "event.ServerGamePacketListenerImplMixin",
     "event.ServerLevelMixin",
     "event.ServerPlayerMixin"

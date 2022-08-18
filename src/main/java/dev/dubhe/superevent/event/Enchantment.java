@@ -12,7 +12,7 @@ public class Enchantment {
     /**
      * 与附魔台操作相关的事件。
      */
-    public static final class EnchantmentEvent{
+    public static final class EnchantmentEvent {
 
         /**
          * 成功附魔物品的事件 (在附魔台里面附魔的)
@@ -42,6 +42,7 @@ public class Enchantment {
 
     @FunctionalInterface
     public interface EnchantmentInstanceListAndItemStackInterface {
+
         void inter(List<EnchantmentInstance> enchantmentInstanceList, ItemStack itemStack);
     }
 
