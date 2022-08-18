@@ -20,7 +20,6 @@
     "event.ServerPlayerMixin"
   ],
   "client": [
-    "player.MultiPlayerGameModeMixin"
   ],
   "injectors": {
     "defaultRequire": 1
