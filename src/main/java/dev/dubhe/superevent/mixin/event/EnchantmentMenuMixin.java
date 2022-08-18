@@ -21,6 +21,7 @@ public class EnchantmentMenuMixin {
     @Inject(method = "method_17411", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/inventory/EnchantmentMenu;broadcastChanges()V"))
     private void slotsChanged(ItemStack itemStack, Level level, BlockPos blockPos, CallbackInfo ci) {
         if (itemStack.isEmpty() || !itemStack.isEnchantable()) {
+            // 物品塞入附魔台的事件
             EnchantmentEvent.PREPARE_ITEM_EVENT.invoker().inter(itemStack);
         }
     }
@@ -28,6 +29,7 @@ public class EnchantmentMenuMixin {
     @Inject(method = "method_17410", at = @At(value = "INVOKE", target = "Ljava/util/List;isEmpty()Z"), locals = LocalCapture.CAPTURE_FAILHARD)
     private void clickMenuButton(ItemStack itemStack, int i, Player player, int j, ItemStack itemStack2, Level level,
             BlockPos blockPos, CallbackInfo ci, ItemStack itemStack3, List<EnchantmentInstance> list) {
+        // 成功附魔物品的事件 (在附魔台里面附魔的)
         EnchantmentEvent.ENCHANT_ITEM_EVENT.invoker().inter(list, itemStack3);
     }
 }

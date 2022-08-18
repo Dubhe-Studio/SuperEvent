@@ -5,7 +5,12 @@
   "mixins": [
     "event.BucketItemMixin",
     "event.EnchantmentMenuMixin",
+    "event.HangingEntityItemMixin",
+    "event.ItemFrameMixin",
+    "event.LeadItemMixin",
+    "event.LeashFenceKnotEntityMixin",
     "event.LightningRodBlockMixin",
+    "event.PaintingMixin",
     "event.PlayerListMixin",
     "event.ServerGamePacketListenerImplMixin",
     "event.ServerLevelMixin",

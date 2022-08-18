@@ -31,14 +31,8 @@ public class ServerGamePacketListenerImplMixin {
     @ModifyArgs(method = "handleChat(Lnet/minecraft/server/network/TextFilter$FilteredText;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/players/PlayerList;broadcastMessage(Lnet/minecraft/network/chat/Component;Ljava/util/function/Function;Lnet/minecraft/network/chat/ChatType;Ljava/util/UUID;)V"))
     private void chat(Args args){
         Component component = args.get(0);
-        Function<ServerPlayer, Component> function = args.get(1);
-        ChatType chatType = args.get(2);
-        UUID uUID = args.get(3);
         // 当玩家聊天时触发这个事件。
         PlayerEvent.PLAYER_CHAT_EVENT.invoker().inter(player, component);
         args.set(0, component);
-        args.set(1, function);
-        args.set(2, chatType);
-        args.set(3, uUID);
     }
 }
